@@ -1,0 +1,64 @@
+<%- layout("layouts/boilerplate") %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 m-auto">
+      <h1 class="mt-4 mb-4">Sign Up Page</h1>
+      <form
+        class="needs-validation"
+        action="/user/signup"
+        method="POST"
+        novalidate
+      >
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input
+            type="name"
+            name="name"
+            class="form-control"
+            required
+            id="name"
+          />
+          <div class="valid-feedback">Looks good!</div>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input
+            type="email"
+            id="email"
+            class="form-control"
+            name="email"
+            required
+          />
+          <div class="valid-feedback">Looks good!</div>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            name="password"
+            required
+          />
+          <div class="valid-feedback">Looks good!</div>
+        </div>
+        <div class="mb-3">
+          <label for="passconfirm" class="form-label">Verify Password</label>
+          <input
+            type="password"
+            id="passconfirm"
+            name="password2"
+            class="form-control"
+            required
+          />
+          <div class="valid-feedback">Looks good!</div>
+        </div>
+        <input type="hidden" name="_csrf" value="<%= csrfToken  %>" />
+        <button class="btn btn-primary button-style">Sign Up</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="/javascripts/validationForm.js"></script>

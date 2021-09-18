@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-md navbar-custom navbar-dark ps-3">
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarNav"
+    aria-controls="navbarNav"
+    aria-expanded="false"
+    aria-label="Toggle Navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse mx-auto order-0" id="navbarNav">
+      <ul class="navbar-nav mx-auto">
+          
+          <li class="<%= pageName==="All Products" ? "nav-item active": "nav-item" %>" >
+
+            <a href="/products/" class="nav-link">All</a>
+
+        </li>
+ 
+        <% if(categories){ %>
+            <% categories.forEach(category=>{ %>
+                <li class="<%= pageName===category.title?"nav-item active":"nav-item" %>" >
+                    <a href="/products/<%= category.slug %>" class="nav-link"><%= category.title %></a>
+                </li>
+            <% }) %> 
+                
+        <% } %> 
+
+      </ul>
+  </div>
+</nav>

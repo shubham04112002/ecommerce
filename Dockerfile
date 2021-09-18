@@ -1,0 +1,24 @@
+FROM node:alpine
+
+WORKDIR /var/app
+
+COPY package.json .
+
+RUN npm install
+
+COPY . .
+
+ENV PORT=8080
+
+ENV SESSION_SECRET=16436e1f1f7e55fc544d32462300a82b2271509e94a641131dc3c407ffc8e9e7
+
+ENV STRIPE_PRIVATE_KEY=sk_test_51JMcv4SHpbzoQu4sMYLG6dFy8LXP8Q38ZPECP7WnnI6pEx6gKikXf3SSZDCrt2z7JMQxj9jGvq1D6LR1VHXFF6aE00KTqTz2Q8
+
+ENV EMAIL=shubhamrajprogrammer@gmail.com
+
+ENV PASSWORD=Shubham@0411
+
+EXPOSE 8080
+
+
+CMD [ "npm","start" ]

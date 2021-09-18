@@ -1,0 +1,283 @@
+<% layout("layouts/boilerplate") %>
+
+<!-- First Carousel of just banners -->
+
+<div
+  class="carousel slide mb-3 mt-0 pt-0"
+  id="firstCarousel"
+  data-bs-ride="carousel"
+>
+  <div class="carousel-indicators">
+    <button
+      type="button"
+      data-bs-target="#firstCarousel"
+      data-bs-slide-to="0"
+      class="active"
+      aria-current="true"
+      aria-label="Slide 1"
+    ></button>
+    <button
+      type="button"
+      data-bs-target="#firstCarousel"
+      data-bs-slide-to="1"
+      aria-label="Slide 2"
+    ></button>
+    <button
+      type="button"
+      data-bs-target="#firstCarousel"
+      data-bs-slide-to="2"
+      aria-label="Slide 3"
+    ></button>
+  </div>
+
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img
+        src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1024&h=256&q=80"
+        class="d-block w-100"
+        alt="..."
+      />
+    </div>
+    <div class="carousel-item">
+      <img
+        src="https://images.unsplash.com/photo-1540761352041-7d28666d4e37?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1024&h=256&q=80"
+        class="d-block w-100"
+        alt="..."
+      />
+    </div>
+    <div class="carousel-item">
+      <img
+        src="https://images.unsplash.com/photo-1524143986875-3b098d78b363?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1024&h=256&q=80"
+        class="d-block w-100"
+        alt="..."
+      />
+    </div>
+  </div>
+
+  <button
+    class="carousel-control-prev"
+    type="button"
+    data-bs-target="#firstCarousel"
+    data-bs-slide="prev"
+  >
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button
+    class="carousel-control-next"
+    type="button"
+    data-bs-target="#firstCarousel"
+    data-bs-slide="next"
+  >
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- second Carousel for category showcase -->
+
+<div class="container">
+  <h3 class="text-center mt-4 mb-3">Store's Categories</h3>
+  <% if(categories && categories.length>=3){ %>
+  <div class="row text-center m-auto">
+    <% for(let i = 0;i<3;i++){ %>
+    <div class="col-lg-3 col-md-3 col-sm-12 text-center ms-2">
+      <a href="/products/<%= categories[i].slug %>" class="title-link">
+        <img
+          src="/images/category<%= i %>.jpg"
+          alt="<%= categories[i].slug %>"
+          class="circle-img"
+        />
+        <h3 class="mb-3 mt-3"><%= categories[i].title %></h3>
+      </a>
+    </div>
+    <% } %>
+    <div class="col-lg-1 col-md-1 col-sm-12 text-center mx-auto">
+      <a href="/products">
+        <i class="fa fa-chevron-circle-right" aria-hidden="true"></i
+      ></a>
+    </div>
+  </div>
+  <% } %>
+</div>
+
+<hr class="gradient-style" />
+
+<!-- Latest Product Carousel which slides the products given by the router -->
+<div class="container mb-4 mt-4">
+  <!-- Carousel Wrapper -->
+  <div id="products-carousel" class="carousel slide" data-bs-ride="carousel">
+    <!-- Controls -->
+
+    <div class="controls-top mb-2">
+      <div class="row">
+        <div class="col-8">
+          <h3>Latest Products</h3>
+        </div>
+        <div class="col-4">
+          <div class="float-end hidden-xs">
+            <a
+              class="start fa fa-chevron-left btn"
+              href="#products-carousel"
+              data-bs-slide="prev"
+            >
+            </a>
+            <a
+              class="end fa fa-chevron-right btn"
+              href="#products-carousel"
+              data-bs-slide="next"
+            ></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- end of controls -->
+
+    <!-- Slides -->
+
+    <div class="carousel-inner" role="listbox">
+      <!-- First Slide -->
+
+      <div class="carousel-item active">
+        <div class="row">
+          <% for(let i=0;i<3;i++){ %>
+          <div class="col-md-4 product-index-box">
+            <div class="single-product d-flex flex-column h-100">
+              <a
+                href="/products/<%= products[i].category.slug %>/<%= products[i]._id %>"
+                class="title-link"
+              >
+                <img
+                  src="<%= products[i].imagePath %>"
+                  alt="<%= products[i].title %> "
+                  class="img-fluid"
+                />
+              </a>
+              <div class="product-info">
+                <a
+                  href="/products/<%= products[i].category.slug %>/<%= products[i]._id %>"
+                  class="title-links"
+                  ><h6 class="mb-2 mt-2"><%= products[i].title %></h6></a
+                >
+                <div class="price">₹ <%= products[i].price %></div>
+              </div>
+              <% if(products[i].available){ %>
+              <a
+                href="/add-to-cart/<%= products[i]._id %>"
+                class="btn btn-block btn-secondary button-style mt-auto mb-2"
+                >Add To Shopping Cart</a
+              >
+              <% }else{ %>
+              <a
+                href="#"
+                class="btn btn-danger btn-block button-style-danger mt-2 mb-2"
+                >Sold Out</a
+              >
+              <% } %>
+            </div>
+          </div>
+          <% } %>
+        </div>
+      </div>
+      <!-- end of first slide -->
+
+      <!-- Second Slide -->
+
+      <div class="carousel-item">
+        <div class="row">
+          <% for(let i=3;i<6;i++){ %>
+          <div class="col-md-4 product-index-box">
+            <div class="single-product d-flex flex-column h-100">
+              <a
+                href="/products/<%= products[i].category.slug %>/<%= products[i]._id %>"
+                class="title-link"
+                ><img
+                  src="<%= products[i].imagePath %>"
+                  class="img-fluid"
+                  alt="<%= products[i].title %>"
+              /></a>
+              <div class="product-info">
+                <a
+                  href="/products/<%= products[i].category.slug %>/<%= products[i]._id %>"
+                  class="title-link"
+                  ><h6 class="mt-2 mb-2"><%= products[i].title %></h6>
+                </a>
+                <div class="price">₹ <%= products[i].price %></div>
+              </div>
+              <% if(products[i].available){ %>
+              <a
+                href="/add-to-cart/<%= products[i]._id %>"
+                class="btn btn-block btn-secondary button-style mb-2 mt-auto"
+                >Add To Shopping Cart</a
+              >
+              <% }else{ %>
+              <a
+                href="#"
+                class="btn btn-block btn-danger button-style-danger mt-2 mb-2"
+                >Sold Out</a
+              >
+              <% } %>
+            </div>
+          </div>
+          <% } %>
+        </div>
+      </div>
+
+      <!-- end of second slide -->
+
+      <!-- third Slide -->
+      <div class="carousel-item">
+        <div class="row">
+          <% for(let i=6;i<9;i++){ %>
+          <div class="col-md-4 product-index-box">
+            <div class="single-product d-flex flex-column h-100">
+              <a
+                href="/products/<%= products[i].category.slug %>/<%= products[i]._id %>"
+                class="title-link"
+              >
+                <img
+                  src="<%= products[i].imagePath %>"
+                  alt="<%= products[i].title %>"
+                  class="img-fluid"
+                />
+              </a>
+              <div class="product-info">
+                <a
+                  href="/products/<%= products[i].category.slug %>/<%= products[i]._id %>"
+                  class="title-link"
+                >
+                  <h6 class="mt-2 mb-2"><%= products[i].title %></h6>
+                </a>
+                <div class="price">₹ <%= products[i].price %></div>
+              </div>
+
+              <% if(products[i].available){ %>
+              <a
+                href="/add-to-cart/<%= products[i]._id %>"
+                class="btn btn-block btn-secondary button-style mb-2 mt-auto"
+                >Add To Shopping Cart</a
+              >
+              <% }else{ %>
+              <a
+                href="#"
+                class="btn btn-block btn-danger button-style-danger mt-2 mb-2"
+              >
+                Sold Out
+              </a>
+              <% } %>
+            </div>
+          </div>
+          <% } %>
+        </div>
+      </div>
+
+      <!-- end of third slide -->
+    </div>
+
+    <!-- end of slides -->
+  </div>
+
+  <!-- end of carousel wrapper -->
+</div>
+<!-- end of the container carrying the carousel -->

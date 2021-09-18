@@ -1,0 +1,87 @@
+<%- layout("layouts/boilerplate") %>
+
+<div class="container-fluid">
+  <!-- breadcrumbs -->
+  <div class="row mt-2">
+    <div class="col-md-12 m-auto">
+      <% if(breadcrumbs){ %>
+      <nav arial-label="breadcrumb">
+        <ol class="breadcrumb">
+          <% breadcrumbs.forEach(crumb=>{if(!crumb.name.startsWith("?")){%>
+          <li class="breadcrumb-item" aria-current="page">
+            <a href="<%= crumb.url %>"><%= crumb.name %></a>
+          </li>
+          <% }}) %>
+        </ol>
+      </nav>
+      <% } %>
+    </div>
+  </div>
+
+  <!-- Making the page banner -->
+  <% if(pageName === "All Products"){ %>
+  <div class="text-center hero-container">
+    <img
+      class="d-block w-100 hero-image"
+      src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1024&h=256&q=80"
+      alt="ryzen"
+    />
+    <div class="hero-text">
+      <h1><%= pageName %></h1>
+    </div>
+  </div>
+  <% }else{ %> <% categories.forEach(category=>{ %> <%
+  if(pageName===category.title){ %>
+  <div class="text-center hero-container">
+    <img
+      src="<%= image %>"
+      alt="category-image"
+      class="d-block w-100 hero-image"
+      style="max-width: 100%; display: block; max-height: 256px"
+    />
+    <div class="hero-text">
+      <h1><%= pageName %></h1>
+    </div>
+  </div>
+  <% } %> <% }) %> <% } %>
+
+  <hr class="gradient-style" />
+
+  <div class="row pe-4 ps-4">
+    <% products.forEach(product=>{ %>
+    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product-index-box">
+      <div class="single-product d-flex flex-column h-100">
+        <a
+          href="/products/<%= product.category.slug %>/<%= product._id %>"
+          class="title-link"
+          ><img
+            src="<%= product.imagePath%>"
+            alt="<%= product.title%>"
+            class="img-fluid"
+        /></a>
+        <div class="product-info">
+          <a
+            class="title-link"
+            href="/products/<%= product.category.slug %>/<%= product._id %>"
+          >
+            <h6 class="mt-2 mb-2"><%= product.title %></h6>
+          </a>
+          <div class="price">₹ <%= product.price %></div>
+        </div>
+        <% if(product.available){ %>
+        <a
+          href="/add-to-cart/<%= product._id %>"
+          class="btn btn-block btn-secondary button-style mt-auto mb-2"
+          >Add To Shopping Cart</a
+        >
+        <% }else{ %>
+        <a class="btn btn-block btn-secondary button-style-danger mt-auto mb-2"
+          >Sold Out</a
+        >
+        <%}%>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+  <%- include("../partials/pagination") %>
+</div>

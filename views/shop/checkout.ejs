@@ -1,0 +1,46 @@
+<%- layout("layouts/boilerplate.ejs") %>
+
+<div class="container mt-4 mb-5">
+  <div class="col-md-8 m-auto">
+    <form action="/checkout" method="POST" id="payment-form">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="mb-3">
+            <label for="card-name" class="form-label">Card Holder Name</label>
+            <input type="text" class="form-control" id="card-name" required />
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="mb-3">
+            <label for="address" class="form-label">Shipping Address</label>
+            <input
+              type="text"
+              id="address"
+              class="form-control"
+              name="address"
+              required
+            />
+          </div>
+        </div>
+        <div class="col-md-12">
+          <label for="card-element" class="form-label">Card Information</label>
+          <!-- A stripe element will be insrted here -->
+          <div class="StripeElement" id="card-element"></div>
+          <!-- used to display an error -->
+          <div class="text-danger mb-3" id="card-errors" role="alert"></div>
+        </div>
+        <input type="hidden" name="_csrf" id="token" value="<%= csrfToken %>" />
+      </div>
+      <button
+        class="btn btn-dark button-style"
+        id="submit-button"
+        type="submit"
+      >
+        Buy Now
+      </button>
+    </form>
+  </div>
+</div>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script src="javascripts/checkout.js"></script>

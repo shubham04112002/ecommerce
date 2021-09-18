@@ -1,0 +1,69 @@
+<div class="row nav-container mx-auto">
+  <div class="col-md-4 col-sm-12 col-xs-12">
+    <div class="search-container">
+      <form action="/products/search" class="form-inline" method="GET">
+        <input
+          type="search"
+          class="search-input"
+          placeholder="Search"
+          name="search"
+        />
+      </form>
+    </div>
+  </div>
+
+  <div class="col-md-4 col-sm-12 col-xs-12 logo-container">
+    <a href="/">
+      <img src="/images/flash.png" class="logo-img img-fluid" alt="logo" />
+      <h4 class="logo-title">Flash</h4>
+    </a>
+  </div>
+
+  <div class="col-md-4 col-sm-12 col-xs-12 right-nav">
+    <ul>
+      <li>
+        <a href="/shopping-cart">
+          <i class="fas fa-shopping-cart"></i>
+
+          <% if(session.cart){ %>
+          <span class="badge rounded-pill bg-info">
+            <%= session.cart.totalQty %>
+          </span>
+          <% }else{ %>
+          <span class="badge rounded-pill bg-info">0</span>
+          <% } %>
+        </a>
+      </li>
+      <% if(login){ %>
+      <li>
+        <a
+          href="#"
+          class="dropdown-toggle"
+          role="button"
+          id="dropdown-connector"
+          data-bs-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+          ><i class="fas fa-user"></i> Welcome <%= currentUser.username %>
+        </a>
+        <div
+          class="dropdown-menu"
+          aria-labelledby="navbarDropdown"
+          id="dropdown-connector"
+        >
+          <a href="/user/profile" class="dropdown-item">User Account</a>
+          <div class="dropdown-divider"></div>
+          <a href="/user/logout" class="dropdown-item">Logout</a>
+        </div>
+      </li>
+      <% }else{ %>
+      <li>
+        <a href="/user/signup">Sign Up</a>
+      </li>
+      <li>
+        <a href="/user/signin">Sign In</a>
+      </li>
+      <% } %>
+    </ul>
+  </div>
+</div>

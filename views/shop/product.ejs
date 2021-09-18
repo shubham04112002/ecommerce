@@ -1,0 +1,39 @@
+<%- layout("layouts/boilerplate") %>
+
+<div class="container">
+  <div class="row mt-4 mb-4">
+    <div class="col-md-5 mt-2 me-2 ms-auto">
+      <img
+        src="<%= product.imagePath %>"
+        alt="<%= product.title %>"
+        class="img-fluid product-image"
+      />
+    </div>
+    <div class="col-md-5 mt-2 mb-2 me-auto ms-2 text-dark">
+      <h2><%= product.title %></h2>
+      <hr />
+      <p class="price">Inr ₹<%= product.price %></p>
+      <p class="lead">Description:
+          <p><%= product.description %></p>
+      </p>
+      <p><strong>Category:</strong> <%= product.category.title %></p>
+      <p><strong>Brand:</strong> <%= product.manufacturer %></p>
+      <p><strong>Product Code:</strong> <%= product.productCode %></p>
+      <p>
+        <strong>Date added to the store:</strong> <%=
+        moment(product.createdAt).format("Do MMMM YYYY") %>
+      </p>
+
+      <% if(product.available){ %>
+      <p class="is-available text-center">In Stock</p>
+      <a
+        href="/add-to-cart/<%= product._id %>"
+        class="btn btn-block btn-secondary mt-3 mb-3 button-style"
+        >Add to shopping cart</a
+      >
+      <% }else{ %>
+      <p class="is-not-available text-center">Sold Out</p>
+      <% } %>
+    </div>
+  </div>
+</div>

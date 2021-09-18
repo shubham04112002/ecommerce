@@ -1,0 +1,114 @@
+<%- layout("layouts/boilerplate") %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-12 m-auto">
+      <h1 class="mt-4 mb-4 text-center">Contact Us</h1>
+    </div>
+
+    <div class="col-lg-8 col-md-12 text-justify m-auto">
+      <div class="mt-4 mb-4">
+        <p>
+          You are always welcome to contact us at anytime! Feel free to email us
+          or phone us using our contact details below<br />
+          You can also visit us or call us at anytime during our working hours
+          from <i>Sunday to Thursday: 9AM to 12PM.</i> <br />
+          We reply to our emails even during the weekends. So please do not
+          hesitate to contact us.
+        </p>
+      </div>
+
+      <!-- Email Contacts -->
+       <div class="mt-4 mb-4">
+           <p>
+              <h6><i>Contact Us By Email: </i></h6>
+          </p>
+          <p>For General Inquiries: <a href="mailto:general@gmail.com"><i class="fa fa-envelope" aria-hidden="true"></i></a> <u>general@gmail.com</u></p>
+          <p>
+            For orders problems:
+            <a href="mailto:orders@email.com">
+              <i class="fa fa-envelope" aria-hidden="true"></i>
+              <u>orders@email.com</u>
+            </a>
+          </p>
+          <p>
+            For technical support:
+            <a href="mailto:support@email.com">
+              <i class="fa fa-envelope" aria-hidden="true"></i>
+              <u>support@email.com</u>
+            </a>
+          </p>
+        </div> 
+        <!-- Phone contacts -->
+        <div class="mt-4 mb-4">
+          <p>
+            <h6><i>Contact us by phone:</i></h6>
+          </p>
+        <p>
+          Call center phone 1:
+          <a href="tel:555-555-5555">
+            <i class="fa fa-phone" aria-hidden="true"></i>
+            555-555-5555
+          </a>
+        </p>
+        <p>
+          Call center phone 2:
+          <a href="tel:555-555-5555">
+            <i class="fa fa-phone" aria-hidden="true"></i>
+            555-555-5555
+          </a>
+        </p>
+        <p>
+          Whatsapp phone:
+          <a href="tel:555-555-5555">
+            <i class="fa fa-phone" aria-hidden="true"></i>
+            555-555-5555
+          </a>
+        </p>
+      </div>
+    </div>
+
+    <div class="col-lg-8 col-md-12 m-auto">
+      <div class="mt-5 mb-4">
+        <h2>Contact Us Form</h2>
+        <form action="/pages/contact-us" method="post">
+          <div class="form-group mb-3">
+            <label for="name">Name</label>
+            <input
+              type="name"
+              class="form-control"
+              name="name"
+              id="name"
+              required
+            />
+          </div>
+          <div class="form-group mb-3">
+            <label for="email">Email</label
+            ><input
+              type="email"
+              name="email"
+              id="email"
+              class="form-control"
+              required
+            />
+          </div>
+          <div class="form-group mb-3">
+            <label for="message">Message</label
+            ><textarea
+              name="message"
+              id="message"
+              class="form-control"
+              rows="5"
+              placeholder="Please write your message here..."
+              required
+            ></textarea>
+          </div>
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+          <button type="submit" class="btn btn-primary button-style">
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

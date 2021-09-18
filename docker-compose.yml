@@ -1,0 +1,14 @@
+version: "3"
+services:
+  mymongo:
+    container_name: mymongo
+    image: mongo
+    
+  flash:
+    restart: always
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on: 
+      - mymongo
+
